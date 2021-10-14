@@ -2,4 +2,12 @@ export type Replace<
   S extends string,
   From extends string,
   To extends string
-> = any
+> = From extends ''
+    ? S
+    : S extends `${infer left}${From}${infer right}`
+      ? `${left}${To}${right}`
+      : S;
+
+// template literal types
+// type constraints
+// string constraints
